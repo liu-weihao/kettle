@@ -1,0 +1,51 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: kettle
+  freemarker:
+    cache: false
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/kettle?useUnicode=true&characterEncoding=UTF8&useSSL=false
+      username: root
+      password: 123456
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+env:
+  databases:
+    - taxi-user
+    - taxi-account
+    - taxi-trade
+    - taxi-coupon
+    - taxi-bi
+    - taxi-system
+    - taxi-credits
+    - taxi-finance
+    - taxi-notification
+    - taxi-gateway
+  from-dbs:
+    - PROD
+    - TEST
+    - LOCAL
+  to-dbs:
+    - LOCAL
+    - TEST
+  db-settings:
+    - name: LOCAL
+      host: *****
+      port: 3306
+      user: *****
+      password: *****
+    - name: TEST
+      host: *****
+      port: 3306
+      user: *****
+      password: *****
+    - name: PROD
+      host: *****
+      port: 3306
+      user: *****
+      password: *****
