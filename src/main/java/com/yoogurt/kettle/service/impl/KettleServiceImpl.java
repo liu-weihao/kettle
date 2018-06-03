@@ -57,6 +57,7 @@ public class KettleServiceImpl implements KettleService {
     public ResponseObj sync(final SpoonForm form) {
         AuthorizedUser userInfo = userService.getUserInfo(form.getToken());
         if (userInfo == null) return ResponseObj.fail(StatusCode.BIZ_FAILED, "授权码不存在");
+        if (!"A".equals(userInfo.getStatus())) return ResponseObj.fail(StatusCode.NO_AUTHORITY);
         SyncRecord record = recordService.record(userInfo.getUser(), userInfo.getToken(), form.getIpv4(), form.getFrom() + "@" + form.getDb(), form.getTo() + "@" + form.getDb());
         if (record == null) return ResponseObj.fail();
         final String sync = record.getSync();
