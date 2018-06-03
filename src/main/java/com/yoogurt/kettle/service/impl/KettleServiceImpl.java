@@ -65,7 +65,7 @@ public class KettleServiceImpl implements KettleService {
             DBSetting fromDbSetting = envConfig.getDBConfig(form.getFrom());
             DBSetting toDbSetting = envConfig.getDBConfig(form.getTo());
             if (fromDbSetting == null || toDbSetting == null) return null;
-            JobMeta jobMeta = getJobMeta(new ClassPathResource("kettle/entrypoint.kjb"));
+            JobMeta jobMeta = getJobMeta(new ClassPathResource(envConfig.getEntryPoint()));
             if (jobMeta == null) return null;
             Job job = new Job(null, jobMeta);
             job.setVariable("sync", sync);

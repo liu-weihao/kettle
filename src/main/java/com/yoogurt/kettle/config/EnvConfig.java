@@ -21,6 +21,8 @@ public class EnvConfig {
 
     private List<DBSetting> dbSettings;
 
+    private String entryPoint;
+
     public DBSetting getDBConfig(String name) {
         if (StringUtils.isBlank(name)) return null;
         return dbSettings.stream().filter(dbSetting -> dbSetting.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
