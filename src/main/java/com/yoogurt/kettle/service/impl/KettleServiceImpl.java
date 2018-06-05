@@ -16,7 +16,7 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -47,8 +47,20 @@ public class KettleServiceImpl implements KettleService {
         Assert.notNull(resource, "请指定作业文件");
         Assert.isTrue(resource.exists(), "请指定作业文件");
         try {
-            return new JobMeta(resource.getFile().getAbsolutePath(), null);
+            return new JobMeta(resource.getFile().getAbsolutePath(), null, null);
         } catch (Exception e) {
+            log.error("获取JobMeta出现异常, {}", e);
+            return null;
+        }
+    }
+
+    @Override
+    public JobMeta getJobMeta(String filePath) {
+        log.info(filePath);
+        try {
+            return new JobMeta(filePath, null);
+        } catch (Exception e) {
+            log.error("获取JobMeta出现异常, {}", e);
             return null;
         }
     }
@@ -65,7 +77,7 @@ public class KettleServiceImpl implements KettleService {
             DBSetting fromDbSetting = envConfig.getDBConfig(form.getFrom());
             DBSetting toDbSetting = envConfig.getDBConfig(form.getTo());
             if (fromDbSetting == null || toDbSetting == null) return null;
-            JobMeta jobMeta = getJobMeta(new ClassPathResource(envConfig.getEntryPoint()));
+            JobMeta jobMeta = getJobMeta(new FileSystemResource(envConfig.getEntryPoint()).getPath());
             if (jobMeta == null) return null;
             Job job = new Job(null, jobMeta);
             job.setVariable("sync", sync);
@@ -84,15 +96,17 @@ public class KettleServiceImpl implements KettleService {
             job.waitUntilFinished();
             return job;
         }).thenAccept((job) -> {
+            boolean hasError = false;
             if (job == null) {
                 log.info("配置异常");
+                hasError = true;
             } else {
                 log.info("同步结果：" + job.getStatus());
-                SyncRecord syncRecord = recordService.getRecord(job.getVariable("sync"));
-                if (syncRecord != null) {
-                    syncRecord.setStatus(job.getErrors() > 0 ? "F" : "S");
-                    recordService.save(syncRecord);
-                }
+            }
+            SyncRecord syncRecord = recordService.getRecord(sync);
+            if (syncRecord != null) {
+                syncRecord.setStatus(hasError ? "F" : "S");
+                recordService.save(syncRecord);
             }
         });
         return ResponseObj.success(sync);
