@@ -9,5 +9,7 @@ public interface KettleService {
 
     JobMeta getJobMeta(Resource resource);
 
+    JobMeta getJobMeta(String filePath);
+
     ResponseObj sync(SpoonForm form);
 }
