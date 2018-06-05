@@ -2,8 +2,9 @@
 
 为了进一步降低操作成本，让整个数据同步过程更稳定、安全，需要进行更高层面的抽象，做成一个简单易用的系统。
 
-效果图：
-![应用截图](https://img-blog.csdn.net/20180604092753134?watermark/3/text/d3hfcHViOiBqaXNodWh1aV8yMDE1/font/5a6L5L2T/fontsize/450/fill/I0JBQkFCMA==/dissolve/200)
+效果图如下：
+
+![应用截图](https://img-blog.csdn.net/20180604092753134?watermark)
 
 除了选择数据源和数据库之外，还加入了授权码，意味着授权范围内的用户才能使用该系统。
 
