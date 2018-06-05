@@ -49,6 +49,7 @@ public class KettleServiceImpl implements KettleService {
         try {
             return new JobMeta(resource.getFile().getAbsolutePath(), null);
         } catch (Exception e) {
+            log.error("获取JobMeta出现异常, {}", e);
             return null;
         }
     }
@@ -84,15 +85,17 @@ public class KettleServiceImpl implements KettleService {
             job.waitUntilFinished();
             return job;
         }).thenAccept((job) -> {
+            boolean hasError = false;
             if (job == null) {
                 log.info("配置异常");
+                hasError = true;
             } else {
                 log.info("同步结果：" + job.getStatus());
-                SyncRecord syncRecord = recordService.getRecord(job.getVariable("sync"));
-                if (syncRecord != null) {
-                    syncRecord.setStatus(job.getErrors() > 0 ? "F" : "S");
-                    recordService.save(syncRecord);
-                }
+            }
+            SyncRecord syncRecord = recordService.getRecord(sync);
+            if (syncRecord != null) {
+                syncRecord.setStatus(hasError ? "F" : "S");
+                recordService.save(syncRecord);
             }
         });
         return ResponseObj.success(sync);
