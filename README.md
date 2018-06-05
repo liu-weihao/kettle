@@ -1,10 +1,8 @@
 ## 基于kettle的数据同步工程
 
-上篇介绍了基于kettle的数据同步工程的搭建，entrypoint.kjb就是整个工程执行的入口。
-
 为了进一步降低操作成本，让整个数据同步过程更稳定、安全，需要进行更高层面的抽象，做成一个简单易用的系统。
 
-以下是应用截图：
+效果图：
 ![应用截图](https://img-blog.csdn.net/20180604092753134?watermark/3/text/d3hfcHViOiBqaXNodWh1aV8yMDE1/font/5a6L5L2T/fontsize/450/fill/I0JBQkFCMA==/dissolve/200)
 
 除了选择数据源和数据库之外，还加入了授权码，意味着授权范围内的用户才能使用该系统。
@@ -46,6 +44,7 @@ CREATE TABLE `sync_record` (
   PRIMARY KEY (`sync`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='同步记录表';
 ```
+
 二、程序设计
 ---
 因为系统做得比较简单实用，没有什么特别设计之处。笔者重点说三点：
@@ -190,12 +189,16 @@ job.start();              //开始执行Job
 job.waitUntilFinished();  //等待Job完成
 ```
 
-3、异步执行作业
----
+**3、异步执行作业**
 
 因为一个Job的执行时间可能会很长，这个主要是看数据量的多少，所以一个request的来回可能会导致TIMEOUT，所以需要改为异步的模式。
 
 其核心的思想是：启动新的线程，客户端定时轮询执行结果。
+
+三、运行
+---
+在IDE里直接运行KettleSyncBootstrap中的main函数。
+部署在Linux服务器上，可以运行start.sh脚本启动，不过需要将工程放在 /usr/local/kettle目录下。可根据实际部署环境更改脚本内容。
 
 就介绍到这了，如有疑问，可以留言，欢迎fork我的工程代码。
 我的公众号：技术汇（ID: jishuhui_2015）
