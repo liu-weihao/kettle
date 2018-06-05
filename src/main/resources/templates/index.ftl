@@ -15,7 +15,7 @@
 <body>
 <form class="layui-form" style="margin: 15px;">
     <div class="layui-form-item">
-        <label class="layui-form-label">源数据</label>
+        <label class="layui-form-label">源数据(FROM)</label>
         <div class="layui-input-inline">
             <select name="from">
                 <#list fromDbs as db>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">目标数据源</label>
+        <label class="layui-form-label">目标数据源(TO)</label>
         <div class="layui-input-inline">
             <select name="to">
                 <#list toDbs as db>
@@ -33,6 +33,7 @@
                 </#list>
             </select>
         </div>
+        <div class="layui-form-mid layui-word-aux">本地数据库前往&nbsp;<a href="http://192.168.0.111:43991/index" target="_blank">内网同步>></a></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">数据库</label>
