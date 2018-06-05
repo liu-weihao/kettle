@@ -1,6 +1,6 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
-
+.pid
 ### MAC ###
 .DS_Store
 ### STS ###
