@@ -454,6 +454,14 @@
         <attribute>UTF8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
       </attribute>
@@ -462,32 +470,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>INITIAL_POOL_SIZE</code>
-        <attribute>5</attribute>
-      </attribute>
-      <attribute>
         <code>IS_CLUSTERED</code>
         <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>MAXIMUM_POOL_SIZE</code>
-        <attribute>8</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_defaultAutoCommit</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_maxIdle</code>
-        <attribute>8</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_maxWait</code>
-        <attribute>17000</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_minIdle</code>
-        <attribute>1</attribute>
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
@@ -515,7 +499,7 @@
       </attribute>
       <attribute>
         <code>USE_POOLING</code>
-        <attribute>Y</attribute>
+        <attribute>N</attribute>
       </attribute>
     </attributes>
   </connection>
@@ -537,6 +521,14 @@
         <attribute>UTF8</attribute>
       </attribute>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.useSSL</code>
+        <attribute>false</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useUnicode</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
       </attribute>
@@ -545,32 +537,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>INITIAL_POOL_SIZE</code>
-        <attribute>5</attribute>
-      </attribute>
-      <attribute>
         <code>IS_CLUSTERED</code>
         <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>MAXIMUM_POOL_SIZE</code>
-        <attribute>8</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_defaultAutoCommit</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_maxIdle</code>
-        <attribute>8</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_maxWait</code>
-        <attribute>17000</attribute>
-      </attribute>
-      <attribute>
-        <code>POOLING_minIdle</code>
-        <attribute>1</attribute>
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
@@ -598,7 +566,7 @@
       </attribute>
       <attribute>
         <code>USE_POOLING</code>
-        <attribute>Y</attribute>
+        <attribute>N</attribute>
       </attribute>
     </attributes>
   </connection>
